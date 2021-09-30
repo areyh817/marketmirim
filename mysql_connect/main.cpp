@@ -221,8 +221,7 @@ void login() {
 	join_key = _getch();	// 눌린 값 대입
 	if (join_key == 'l') {
 		system("cls");
-		foodMarket();
-		/*sprintf(query, "select * from user where id = '%s'", id);
+		sprintf(query, "select * from user where id = %d", id);
 		mysql_query(mysql, query);
 		res = mysql_store_result(mysql);
 		fields = mysql_num_fields(res);
@@ -230,10 +229,16 @@ void login() {
 		int cnt = 0;
 		if (row = mysql_fetch_row(res)) {
 			cnt++;
-			if (!strcmp(row[1], pw)) cout << "ok";
-			else cout << "no ok";
+			if (!strcmp(row[1], pw)) {
+				cout << "로그인 되었습니다.";
 
-		} else cout << "no ok";*/
+			}
+			else cout << "아이디 또는 비밀번호가 일치하지 않습니다.";
+
+		} else cout << "아이디 또는 비밀번호가 일치하지 않습니다";
+		Sleep(1000);
+		system("cls");
+		foodMarket();
 	}
 	/*while (1) {
 		
