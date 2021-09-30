@@ -10,7 +10,7 @@
 #pragma comment(lib, "libmysql.lib")
 using namespace std;
 
-#define MYSQLIP "localhost"	
+#define MYSQLID "localhost"	
 #define MYSQLUSER "root"
 #define MYSQLPW "2118"	
 #define MYSQLDB "study_db"	
@@ -19,6 +19,8 @@ MYSQL_RES* res;
 MYSQL_ROW row;
 
 
+// 함수 프로토타입 선언
+void foodMarket();
 
 // 눌린 key값 이걸로 이동할 거임
 int join_key = 0;
@@ -179,6 +181,7 @@ void login() {
 	borderLine();
 
 	// 변수 선언
+	int fields;
 	int id;
 	char* name = (char*)malloc(sizeof(char) * 50);
 	char* pw = (char*)malloc(sizeof(char) * 50);
@@ -206,25 +209,42 @@ void login() {
 
 
 
-
-	while (1) {
-		gotoxy(48, 24);
-		cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓";
-		gotoxy(48, 25);
-		cout << "┃                   로그인 ( L ) 클릭 !                   ┃";
-		gotoxy(48, 26);
-		cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
+	gotoxy(48, 24);
+	cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓";
+	gotoxy(48, 25);
+	cout << "┃                   로그인 ( L ) 클릭 !                   ┃";
+	gotoxy(48, 26);
+	cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
 
 
-		join_key = _getch();	// 눌린 값 대입
-		if (join_key == 'l') {
-			system("cls");
-			break;
-		}
+	char query[255];
+	join_key = _getch();	// 눌린 값 대입
+	if (join_key == 'l') {
+		system("cls");
+		foodMarket();
+		/*sprintf(query, "select * from user where id = '%s'", id);
+		mysql_query(mysql, query);
+		res = mysql_store_result(mysql);
+		fields = mysql_num_fields(res);
+
+		int cnt = 0;
+		if (row = mysql_fetch_row(res)) {
+			cnt++;
+			if (!strcmp(row[1], pw)) cout << "ok";
+			else cout << "no ok";
+
+		} else cout << "no ok";*/
 	}
+	/*while (1) {
+		
+		
+
+	}*/
 
 
-
+	/*				
+					break;
+				}*/
 
 }
 
@@ -442,8 +462,6 @@ void foodCount() {
 
 	borderLine();
 
-	// 음식 주문 갯수를 담는 변수
-
 
 	gotoxy(55, 8);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
@@ -503,8 +521,7 @@ void basket() {
 int main() {
 
 
-	if (!mysql_real_connect(mysql, MYSQLIP, MYSQLUSER, MYSQLPW, MYSQLDB, 3308, NULL, 0))
-		cout << "error" << endl;
+	if (!mysql_real_connect(mysql, MYSQLID, MYSQLUSER, MYSQLPW, MYSQLDB, 3308, NULL, 0)) cout << "error" << endl;
 	else {
 		cout << "success" << endl;
 		mysql_set_character_set(mysql, "euckr");
