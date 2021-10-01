@@ -986,19 +986,16 @@ void basket() {
 
 			res = mysql_store_result(mysql);		// Result set에 저장
 
+			cout << "상품명\t     수량     \t금액\n";
 			while ((row = mysql_fetch_row(res)) != NULL) {		// Result set에서 1개씩 배열을 가져옴
 
-				cout << row[0] << " " << row[1] << " " << row[2] << endl;					// 저장된 배열을 출력
+				cout << row[0] << "\t\t" << row[1] << "\t\t" << row[2] << endl;					// 저장된 배열을 출력
 
 			}
 
 			// Result set 해제
 			mysql_free_result(res);
 		}
-
-		Sleep(1000);
-		system("cls");
-		foodMarket();
 	}
 
 }
@@ -1062,7 +1059,7 @@ int main() {
 	}
 
 	// 음식 메뉴 목록 화면 출력
-	foodMarket();
+	// foodMarket();
 
 
 
