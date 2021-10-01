@@ -133,8 +133,10 @@ void mamilogo() {
 	gotoxy(67, 22);
 	cout << "▶   2. 로그인";
 	gotoxy(67, 23);
-	cout << "▶   3. 종료하기";
-	gotoxy(55, 26);
+	cout << "▶   3. 장바구니보기";
+	gotoxy(67, 24);
+	cout << "▶   4. 종료하기";
+	gotoxy(55, 27);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" << endl;
 }
 
@@ -966,11 +968,18 @@ void basket() {
 	cout << "구매목록을 확인하시려면 학번을 입력해주세요 : ";
 	cin >> id;
 
+	gotoxy(48, 24);
+	cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓";
+	gotoxy(48, 25);
+	cout << "┃                  장바구니 ( L ) 확인 !                  ┃";
+	gotoxy(48, 26);
+	cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
+
 	char query[255];
 	join_key = _getch();	// 눌린 값 대입
 	if (join_key == 'l') {
 		system("cls");
-		sprintf(query, "select foodname, cnt, money from product where id = '%s'", id);
+		sprintf(query, "select foodname, cnt, money from product where id = %d", id);
 		int state = mysql_query(mysql, query);
 
 		if (state == 0) {
@@ -1042,7 +1051,11 @@ int main() {
 				break;
 			}
 		}
-		else if (key == '3') {				/// 프로그램 종료
+		else if (key == '3') {
+			system("cls");
+			basket(); break;
+		}
+		else if (key == '4') {				/// 프로그램 종료
 			exit(0);
 		}
 
