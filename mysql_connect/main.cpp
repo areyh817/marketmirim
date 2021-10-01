@@ -29,6 +29,7 @@ void foodCoffee();
 void foodCake();
 void foodPie();
 void foodMlik();
+void basket();
 
 // 눌린 key값 이걸로 이동할 거임
 int join_key = 0;
@@ -407,14 +408,9 @@ void foodMarket() {
 	cout << " ,-='  /  |  \  `=-.";
 	gotoxy(80, 29);
 	cout << ":--..___________..--;";
-	gotoxy(80, 30);
-	cout << " \.,_____________,./";
-
-
-	// 우유
 	gotoxy(115, 22);
 	setColor(WHITE);
-	cout << "6. 우유";
+	cout << "6. 해정우유";
 	gotoxy(115, 23);
 	cout << "1500원";
 	gotoxy(119, 25);
@@ -526,7 +522,7 @@ void foodApple() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -586,7 +582,7 @@ void foodGrape() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -646,7 +642,7 @@ void foodcheese() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -707,7 +703,7 @@ void foodchoco() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -767,7 +763,7 @@ void foodCoffee() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -827,7 +823,7 @@ void foodCake() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -887,7 +883,7 @@ void foodPie() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -947,7 +943,7 @@ void foodMlik() {
 			cout << "메뉴가 성공적으로 담겼습니다 !";
 			Sleep(1000);
 			system("cls");
-			foodMarket();
+			basket();
 		}
 	}
 
@@ -962,10 +958,32 @@ void basket() {
 	gotoxy(55, 8);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 	gotoxy(62, 9);
-	cout << "♥  나의 장바구니 목록 ♥" << endl;
+	cout << "구매목록" << endl;
 	gotoxy(55, 10);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 
+	gotoxy(56, 22);
+	cout << "구매목록을 확인하시려면 학번을 입력해주세요 : ";
+	cin >> id;
+
+	char query[255];
+	join_key = _getch();	// 눌린 값 대입
+	if (join_key == 'l') {
+		system("cls");
+		sprintf(query, "select foodname, cnt, money from product where id = ", id);
+		mysql_query(mysql, query);
+		res = mysql_store_result(mysql);
+		fields = mysql_num_fields(res);
+
+		if (row = mysql_fetch_row(res)) {
+			cout << row[1] << "\t" << row[2] << "\t" << row[3] << endl;
+
+		}
+
+		Sleep(1000);
+		system("cls");
+		foodMarket();
+	}
 
 }
 
