@@ -959,7 +959,7 @@ void basket() {
 
 	gotoxy(55, 8);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-	gotoxy(65, 9);
+	gotoxy(70, 9);
 	cout << "장바구니 목록" << endl;
 	gotoxy(55, 10);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
@@ -986,9 +986,19 @@ void basket() {
 
 			res = mysql_store_result(mysql);		// Result set에 저장
 
-			cout << "상품명\t     수량     \t금액\n";
+			gotoxy(55, 8);
+			cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+			gotoxy(58, 9);
+			cout << "상품명\t      수량      \t금액\n";
+			gotoxy(55, 10);
+			cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+			
+
+			gotoxy(58, 13);
+
 			while ((row = mysql_fetch_row(res)) != NULL) {		// Result set에서 1개씩 배열을 가져옴
 
+				
 				cout << row[0] << "\t\t" << row[1] << "\t\t" << row[2] << endl;					// 저장된 배열을 출력
 
 			}
