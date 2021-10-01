@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 	char* pw = (char*)malloc(sizeof(char) * 50);
 	int query_stat;
 
-	cout << "학번 : ";
+	/*cout << "학번 : ";
 	cin >> id;
 	cout << "비밀번호 : ";
 	cin >> pw;
@@ -43,11 +43,11 @@ int main(int argc, char* argv[]) {
 	if (stat != 0) {
 		printf("error : %s", mysql_error(mysql));
 		return 1;
-	}
+	}*/
 
 
 	char query2[100];
-	sprintf(query2, "select * from user");
+	sprintf(query2, "select foodname, cnt, money from product where id = %d", 2118);
 	int state2 = 0;
 
 	state2 = mysql_query(mysql, query2);

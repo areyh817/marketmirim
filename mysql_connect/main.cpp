@@ -957,8 +957,8 @@ void basket() {
 
 	gotoxy(55, 8);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-	gotoxy(62, 9);
-	cout << "구매목록" << endl;
+	gotoxy(65, 9);
+	cout << "장바구니 목록" << endl;
 	gotoxy(55, 10);
 	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 
@@ -970,14 +970,21 @@ void basket() {
 	join_key = _getch();	// 눌린 값 대입
 	if (join_key == 'l') {
 		system("cls");
-		sprintf(query, "select foodname, cnt, money from product where id = ", id);
-		mysql_query(mysql, query);
-		res = mysql_store_result(mysql);
-		fields = mysql_num_fields(res);
+		sprintf(query, "select foodname, cnt, money from product where id = '%s'", id);
+		int state = mysql_query(mysql, query);
 
-		if (row = mysql_fetch_row(res)) {
-			cout << row[1] << "\t" << row[2] << "\t" << row[3] << endl;
+		if (state == 0) {
 
+			res = mysql_store_result(mysql);		// Result set에 저장
+
+			while ((row = mysql_fetch_row(res)) != NULL) {		// Result set에서 1개씩 배열을 가져옴
+
+				cout << row[0] << " " << row[1] << " " << row[2] << endl;					// 저장된 배열을 출력
+
+			}
+
+			// Result set 해제
+			mysql_free_result(res);
 		}
 
 		Sleep(1000);
