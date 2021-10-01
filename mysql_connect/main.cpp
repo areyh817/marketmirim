@@ -32,6 +32,10 @@ int foodNumberKey;
 // 음식 주문
 int foodCnt1 = 0;
 
+int fields;
+int id;
+char* name = (char*)malloc(sizeof(char) * 50);
+char* pw = (char*)malloc(sizeof(char) * 50);
 
 // function prototype
 void foodCount();
@@ -131,9 +135,6 @@ void join() {
 	borderLine();
 
 	// 변수 선언
-	int id;
-	char* name = (char*)malloc(sizeof(char) * 50);
-	char* pw = (char*)malloc(sizeof(char) * 50);
 
 	gotoxy(67, 13);
 	cout << "♥ 회 원 가 입 ♥" << endl;
@@ -181,10 +182,6 @@ void login() {
 	borderLine();
 
 	// 변수 선언
-	int fields;
-	int id;
-	char* name = (char*)malloc(sizeof(char) * 50);
-	char* pw = (char*)malloc(sizeof(char) * 50);
 
 
 	gotoxy(65, 8);
@@ -240,16 +237,6 @@ void login() {
 		system("cls");
 		foodMarket();
 	}
-	/*while (1) {
-		
-		
-
-	}*/
-
-
-	/*				
-					break;
-				}*/
 
 }
 
@@ -452,7 +439,7 @@ void foodMarket() {
 
 		if (foodNumberKey == '1') {
 			system("cls");
-			foodCount();
+			foodApple();
 		}
 	}
 
@@ -461,19 +448,15 @@ void foodMarket() {
 }
 
 // 음식의 주문 갯수 함수
-void foodCount() {
+void foodApple() {
 
 	setColor(WHITE);
 
 	borderLine();
 
 
-	gotoxy(55, 8);
-	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 	gotoxy(62, 9);
-	cout << "♥  몇 개를 주문하시겠습니까 ? ♥" << endl;
-	gotoxy(55, 10);
-	cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+	cout << "♥  사과를 몇 개를 주문하시겠습니까 ? ♥" << endl;
 
 	gotoxy(47, 16);
 	cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓";
@@ -485,19 +468,24 @@ void foodCount() {
 
 
 
-	while (1) {
-		gotoxy(48, 24);
-		cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓";
-		gotoxy(48, 25);
-		cout << "┃                  장바구니 ( L ) 담기 !                  ┃";
-		gotoxy(48, 26);
-		cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
+	gotoxy(48, 24);
+	cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓";
+	gotoxy(48, 25);
+	cout << "┃                  장바구니 ( L ) 담기 !                  ┃";
+	gotoxy(48, 26);
+	cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
 
 
-		join_key = _getch();	// 눌린 값 대입
-		if (join_key == 'l') {
-			system("cls");
-			break;
+	int money = foodCnt1 * 1000;
+	join_key = _getch();	// 눌린 값 대입
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO food VALUES(%d, '%s', '%s', %d, %d)", id, name, foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			printf("error : %s", mysql_error(mysql));
 		}
 	}
 
