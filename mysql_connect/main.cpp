@@ -20,7 +20,15 @@ MYSQL_ROW row;
 
 
 // ÇÔ¼ö ÇÁ·ÎÅäÅ¸ÀÔ ¼±¾ð
+void foodApple();
 void foodMarket();
+void foodGrape();
+void foodcheese();
+void foodchoco();
+void foodCoffee();
+void foodCake();
+void foodPie();
+void foodMlik();
 
 // ´­¸° key°ª ÀÌ°É·Î ÀÌµ¿ÇÒ °ÅÀÓ
 int join_key = 0;
@@ -428,21 +436,40 @@ void foodMarket() {
 	cout << "|___|_________|";
 
 
+	foodNumberKey = _getch();		// Å°º¸µå·ÎºÎÅÍ ´­¸° °ª ´ëÀÔ
 
-
-
-
-
-	while (1) {
-
-		foodNumberKey = _getch();		// Å°º¸µå·ÎºÎÅÍ ´­¸° °ª ´ëÀÔ
-
-		if (foodNumberKey == '1') {
-			system("cls");
-			foodApple();
-		}
+	if (foodNumberKey == '1') {
+		system("cls");
+		foodApple();
 	}
-
+	else if (foodNumberKey == '2') {
+		system("cls");
+		foodGrape();
+	}
+	else if (foodNumberKey == '3') {
+		system("cls");
+		foodcheese();
+	}
+	else if (foodNumberKey == '4') {
+		system("cls");
+		foodchoco();
+	}
+	else if (foodNumberKey == '5') {
+		system("cls");
+		foodCoffee();
+	}
+	else if (foodNumberKey == '6') {
+		system("cls");
+		foodCake();
+	}
+	else if (foodNumberKey == '7') {
+		system("cls");
+		foodPie();
+	}
+	else if (foodNumberKey == '8') {
+		system("cls");
+		foodMlik();
+	}
 
 
 }
@@ -466,7 +493,9 @@ void foodApple() {
 	gotoxy(47, 20);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
-
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
 
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
@@ -477,15 +506,448 @@ void foodApple() {
 
 
 	int money = foodCnt1 * 1000;
+
 	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
 	if (join_key == 'l') {
 		system("cls");
 		char query[255];
-		sprintf(query, "INSERT INTO food VALUES(%d, '%s', '%s', %d, %d)", id, name, foodCnt1, money);
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "»ç°ú", foodCnt1, money);
 		int stat = mysql_query(mysql, query);
 
 		if (stat != 0) {
-			printf("error : %s", mysql_error(mysql));
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		} else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+void foodGrape() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  Æ÷µµ¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 2000;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "Æ÷µµ", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+void foodcheese() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  Ä¡Áî¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 1500;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "Ä¡Áî", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+
+void foodchoco() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  ÃÊÄÝ¸´À» ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 2000;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "ÃÊÄÝ¸´", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+void foodCoffee() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  Ä¿ÇÇ¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 3000;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "Ä¿ÇÇ", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+void foodCake() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  ÄÉÀÌÅ©¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 5000;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "ÄÉÀÌÅ©", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+void foodPie() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  ¾ÖÇÃÆÄÀÌ¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 6000;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "¾ÖÇÃÆÄÀÌ", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+		}
+	}
+
+
+
+}
+
+void foodMlik() {
+
+	setColor(WHITE);
+
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "¢¾  ¿ìÀ¯¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+	gotoxy(47, 16);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(65, 18);
+	cout << "¢º   °³    ¼ö  \t";
+	cin >> foodCnt1;
+	gotoxy(47, 20);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+	gotoxy(48, 22);
+	cout << "ÁÖ¹®ÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+
+	gotoxy(48, 24);
+	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(48, 25);
+	cout << "¦­                  Àå¹Ù±¸´Ï ( L ) ´ã±â !                  ¦­";
+	gotoxy(48, 26);
+	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+
+
+	int money = foodCnt1 * 1500;
+
+	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
+	if (join_key == 'l') {
+		system("cls");
+		char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "¿ìÀ¯", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
+
+		if (stat != 0) {
+			system("cls");
+			cout << "¸Þ´º°¡ Á¦´ë·Î ´ã±âÁö ¾Ê¾Ò½À´Ï´Ù. ¸Þ´º ¼±ÅÃÈ­¸éÀ¸·Î ´Ù½Ã ÀÌµ¿ÇÕ´Ï´Ù.";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
+
+		}
+		else {
+			system("cls");
+			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
+			Sleep(1000);
+			system("cls");
+			foodMarket();
 		}
 	}
 
@@ -519,6 +981,10 @@ int main() {
 		cout << "success" << endl;
 		mysql_set_character_set(mysql, "euckr");
 	}
+
+	mysql_query(mysql, "set session character_set_connection=euckr;");
+	mysql_query(mysql, "set session character_set_results=euckr;");
+	mysql_query(mysql, "set session character_set_client=euckr;");
 
 	// console ±âº» ¼³Á¤
 	system("mode con: cols=160 lines=40");
