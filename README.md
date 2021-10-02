@@ -3,4 +3,4 @@
 * database : study_db
 * id : localhost
 * user : root
-* port : 3307
+* port : 3308
