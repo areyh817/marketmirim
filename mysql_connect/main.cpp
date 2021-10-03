@@ -994,12 +994,11 @@ void basket() {
 			cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 			
 
-			gotoxy(58, 13);
-
+			cout << "\n\n\n";
 			while ((row = mysql_fetch_row(res)) != NULL) {		// Result set에서 1개씩 배열을 가져옴
 
 				
-				cout << row[0] << "\t\t" << row[1] << "\t\t" << row[2] << endl;					// 저장된 배열을 출력
+				cout << "                                                            " << row[0] << "\t\t" << row[1] << "\t\t" << row[2] << endl;					// 저장된 배열을 출력
 
 			}
 
