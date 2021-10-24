@@ -1034,6 +1034,7 @@ int main() {
 		mysql_set_character_set(mysql, "euckr");
 	}
 
+	// 한글로 입력받기 위함
 	mysql_query(mysql, "set session character_set_connection=euckr;");
 	mysql_query(mysql, "set session character_set_results=euckr;");
 	mysql_query(mysql, "set session character_set_client=euckr;");
