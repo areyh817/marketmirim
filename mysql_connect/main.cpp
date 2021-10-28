@@ -1021,7 +1021,8 @@ void basket() {
 			if (join_key == 32) {
 				system("cls");
 				cout << "구매완료 !";
-			}
+			} 
+
 			// Result set 해제
 			mysql_free_result(res);
 		}
@@ -1029,7 +1030,15 @@ void basket() {
 
 }
 
+void buy() {
+	setColor(WHITE);
 
+	borderLine();
+
+
+	gotoxy(62, 9);
+	cout << "♥ 메뉴를 주문하시겠습니까 ? ♥" << endl;
+}
 
 
 // main
