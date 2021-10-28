@@ -30,6 +30,9 @@ void foodCake();
 void foodPie();
 void foodMlik();
 void basket();
+void login();
+void join();
+void buy();
 
 // ´­¸° key°ª ÀÌ°É·Î ÀÌµ¿ÇÒ °ÅÀÓ
 int join_key = 0;
@@ -80,26 +83,6 @@ void setColor(unsigned short text) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), text);
 }
 
-// Å×µÎ¸® ±×¸®±â
-void borderLine() {
-
-	for (int i = 1; i <= 113; i++) {
-		gotoxy(1 + i, 1);
-		cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
-	}
-	for (int i = 1; i <= 36; i++) {
-		gotoxy(1, 1 + i);
-		cout << "¦­";
-	}
-	for (int i = 1; i <= 113; i++) {
-		gotoxy(1 + i, 38);
-		cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
-	}
-	for (int i = 1; i <= 36; i++) {
-		gotoxy(156, 1 + i);
-		cout << "¦­";
-	}
-}
 
 
 // ¸ÞÀÎ·Î°í
@@ -138,21 +121,31 @@ void mamilogo() {
 	cout << "¢º   4. Á¾·áÇÏ±â";
 	gotoxy(55, 27);
 	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬" << endl;
+
+	join_key = _getch();
+	if (join_key == '1') {
+		system("cls");
+		join();
+	}
+	else if (join_key == '2') {
+		system("cls");
+		login();
+	}
+	else if (join_key == '3') {
+		system("cls");
+		basket();
+	}
+	else if (join_key == '4') {
+		exit(0);
+	}
 }
 
 // È¸¿ø°¡ÀÔ
 void join() {
-
-	borderLine();
-
-	// º¯¼ö ¼±¾ð
-
-	gotoxy(67, 13);
-	cout << "¢¾ È¸ ¿ø °¡ ÀÔ ¢¾" << endl;
-	gotoxy(58, 15);
-	cout << "¢Ñ ¹Ì¸²ÇÐ»ýµé¸¸ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù ¢Ð";
+	gotoxy(69, 9);
+	cout << "¢¾ È¸¿ø°¡ÀÔ ¢¾" << endl;
 	gotoxy(65, 18);
-	cout << "¢º   ÇÐ    ¹ø \t";
+	cout << "¢º   ÇÐ   ¹ø  \t";
 	cin >> id;
 	gotoxy(65, 19);
 	cout << "¢º   ºñ¹Ð¹øÈ£ \t";
@@ -161,25 +154,18 @@ void join() {
 	cout << "¢º   ÀÌ    ¸§ \t";
 	cin >> name;
 
+	gotoxy(60, 23);
+	cout << "¢¾ SPACE¸¦ ´­·¯ È¸¿ø°¡ÀÔÀ» ÇØÁÖ¼¼¿ä ¢¾" << endl;
+
 	// Äõ¸®:·¹ÄÚµå»ðÀÔ
 	char query[255];
 	sprintf(query, "INSERT INTO user VALUES(%d, '%s', '%s')", id, pw, name);
 	int stat = mysql_query(mysql, query);
 
-
-	while (1) {
-		gotoxy(48, 24);
-		cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
-		gotoxy(48, 25);
-		cout << "¦­          È¸          ¿ø          °¡          ÀÔ         ¦­";
-		gotoxy(48, 26);
-		cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
-
-		join_key = _getch();	// ´­¸° °ª ´ëÀÔ
-		if (join_key == 32) {
-			system("cls");
-			break;
-		}
+	join_key = _getch();
+	if (join_key == 32) {
+		system("cls");
+		login();
 	}
 
 
@@ -189,41 +175,17 @@ void join() {
 // login function
 void login() {
 
-
-	borderLine();
-
-	// º¯¼ö ¼±¾ð
-
-
-	gotoxy(65, 8);
-	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
 	gotoxy(69, 9);
 	cout << "¢¾ ·Î±×ÀÎ ¢¾" << endl;
-	gotoxy(65, 10);
-	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
-
-	/*gotoxy(58, 15);
-	cout << "¢Ñ ¹Ì¸²ÇÐ»ýµé¸¸ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù ¢Ð";*/
-	gotoxy(47, 16);
-	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(65, 18);
 	cout << "¢º   ÇÐ   ¹ø  \t";
 	cin >> id;
 	gotoxy(65, 19);
 	cout << "¢º   ºñ¹Ð¹øÈ£ \t";
 	cin >> pw;
-	gotoxy(47, 21);
-	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
-
-
-	gotoxy(48, 24);
-	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
-	gotoxy(48, 25);
-	cout << "¦­          ·Î          ±×          ÀÎ          ¢¾         ¦­";
-	gotoxy(48, 26);
-	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
-
+	gotoxy(60, 23);
+	cout << "¢¾ SPACE¸¦ ´­·¯ ·Î±×ÀÎÇØÁÖ¼¼¿ä ¢¾" << endl;
 
 	char query[255];
 	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
@@ -247,9 +209,13 @@ void login() {
 				system("cls");
 				login();
 			}
-			} else {
+		}
+		else {
 			cout << "¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù";
-			
+			Sleep(1000);
+			system("cls");
+			login();
+
 		}
 
 		Sleep(1000);
@@ -442,6 +408,15 @@ void foodMarket() {
 	cout << "|___|_________|";
 
 
+	setColor(WHITE);
+	gotoxy(66, 35);
+	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
+	gotoxy(68, 36);
+	cout << "¢¾ Àå¹Ù±¸´Ï È®ÀÎ(ENTER) ¢¾" << endl;
+	gotoxy(66, 37);
+	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
+
+
 	foodNumberKey = _getch();		// Å°º¸µå·ÎºÎÅÍ ´­¸° °ª ´ëÀÔ
 
 	if (foodNumberKey == '1') {
@@ -476,6 +451,10 @@ void foodMarket() {
 		system("cls");
 		foodMlik();
 	}
+	else if (foodNumberKey == 13) {
+		system("cls");
+		basket();
+	}
 
 
 }
@@ -485,10 +464,8 @@ void foodApple() {
 
 	setColor(WHITE);
 
-	borderLine();
 
-
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  »ç°ú¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -506,7 +483,7 @@ void foodApple() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -532,7 +509,7 @@ void foodApple() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -544,10 +521,9 @@ void foodGrape() {
 
 	setColor(WHITE);
 
-	borderLine();
 
 
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  Æ÷µµ¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -565,7 +541,7 @@ void foodGrape() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -592,7 +568,7 @@ void foodGrape() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -604,10 +580,9 @@ void foodcheese() {
 
 	setColor(WHITE);
 
-	borderLine();
 
 
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  Ä¡Áî¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -625,7 +600,7 @@ void foodcheese() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -652,7 +627,7 @@ void foodcheese() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -665,10 +640,9 @@ void foodchoco() {
 
 	setColor(WHITE);
 
-	borderLine();
 
 
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  ÃÊÄÝ¸´À» ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -686,7 +660,7 @@ void foodchoco() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -713,7 +687,7 @@ void foodchoco() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -725,10 +699,9 @@ void foodCoffee() {
 
 	setColor(WHITE);
 
-	borderLine();
 
 
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  Ä¿ÇÇ¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -746,7 +719,7 @@ void foodCoffee() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -773,7 +746,7 @@ void foodCoffee() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -785,10 +758,8 @@ void foodCake() {
 
 	setColor(WHITE);
 
-	borderLine();
 
-
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  ÄÉÀÌÅ©¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -806,7 +777,7 @@ void foodCake() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -833,7 +804,7 @@ void foodCake() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -845,10 +816,8 @@ void foodPie() {
 
 	setColor(WHITE);
 
-	borderLine();
 
-
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  ¾ÖÇÃÆÄÀÌ¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -866,7 +835,7 @@ void foodPie() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -893,7 +862,7 @@ void foodPie() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -905,10 +874,8 @@ void foodMlik() {
 
 	setColor(WHITE);
 
-	borderLine();
 
-
-	gotoxy(62, 9);
+	gotoxy(58, 9);
 	cout << "¢¾  ¿ìÀ¯¸¦ ¸î °³¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
 
 	gotoxy(47, 16);
@@ -926,7 +893,7 @@ void foodMlik() {
 	gotoxy(48, 24);
 	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
 	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï ´ã±â !                  ¦­";
+	cout << "                     Àå¹Ù±¸´Ï ´ã±â                                                          ";
 	gotoxy(48, 26);
 	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
 
@@ -953,7 +920,7 @@ void foodMlik() {
 			cout << "¸Þ´º°¡ ¼º°øÀûÀ¸·Î ´ã°å½À´Ï´Ù !";
 			Sleep(1000);
 			system("cls");
-			basket();
+			foodMarket();
 		}
 	}
 
@@ -963,25 +930,16 @@ void foodMlik() {
 
 
 void basket() {
-	borderLine();
 
-	gotoxy(55, 8);
-	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
-	gotoxy(70, 9);
+	gotoxy(72, 9);
 	cout << "Àå¹Ù±¸´Ï ¸ñ·Ï" << endl;
-	gotoxy(55, 10);
-	cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
 
 	gotoxy(56, 22);
-	cout << "±¸¸Å¸ñ·ÏÀ» È®ÀÎÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cout << "Àå¹Ù±¸´Ï¸¦ È®ÀÎÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
 	cin >> id;
 
-	gotoxy(48, 24);
-	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
-	gotoxy(48, 25);
-	cout << "¦­                  Àå¹Ù±¸´Ï È®ÀÎ !                  ¦­";
-	gotoxy(48, 26);
-	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+	gotoxy(60, 25);
+	cout << "¢¾ SPACE¸¦ ´­·¯ Àå¹Ù±¸´Ï¸¦ È®ÀÎ ÇØÁÖ¼¼¿ä ¢¾" << endl;
 
 	char query[255];
 	join_key = _getch();	// ´­¸° °ª ´ëÀÔ
@@ -1010,17 +968,13 @@ void basket() {
 
 			}
 				
-			gotoxy(55, 40);
-			cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
-			gotoxy(58, 41);
-			cout << "À§ »óÇ°À» ±¸¸ÅÇÏ½Ã°Ú½À´Ï±î ? (SPACE)\n";
-			gotoxy(55, 42);
-			cout << "¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬";
+			gotoxy(63, 35);
+			cout << "¢¾ SPACE¸¦ ´­·¯ »óÇ°À» ´ã¾ÆÁÖ¼¼¿ä ¢¾" << endl;
 
 			join_key = _getch();
 			if (join_key == 32) {
 				system("cls");
-				cout << "±¸¸Å¿Ï·á !";
+				buy();
 			} 
 
 			// Result set ÇØÁ¦
@@ -1033,11 +987,27 @@ void basket() {
 void buy() {
 	setColor(WHITE);
 
-	borderLine();
-
-
 	gotoxy(62, 9);
 	cout << "¢¾ ¸Þ´º¸¦ ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î ? ¢¾" << endl;
+
+
+	gotoxy(56, 12);
+	cout << "±¸¸ÅÇÏ½Ã·Á¸é ÇÐ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ";
+	cin >> id;
+	
+
+	gotoxy(59, 15);
+	cout << "¢¾ SPACE¸¦ ´­·¯ »óÇ°À» ±¸¸ÅÇØÁÖ¼¼¿ä ¢¾" << endl;
+
+	join_key = _getch();
+	if (join_key == 32) {
+		char query[255];
+		sprintf(query, "delete from product where id = %d", id);
+		int state = mysql_query(mysql, query);
+
+		system("cls");
+		foodMarket();
+	}
 }
 
 
@@ -1060,48 +1030,7 @@ int main() {
 	system("mode con: cols=160 lines=40");
 	SetConsoleTitle(TEXT("MaMi"));
 
-	int key;	// Å°º¸µå·Î ÀÔ·Â¹ÞÀ» °ª
-
-
-	while (1) {
-
-		// ¸ÞÀÎ·Î°í È£Ãâ
-		mamilogo();
-
-		key = _getch(); // ´­¸° °ª ´ëÀÔ
-
-		if (key == '1') {					// È¸¿ø°¡ÀÔÃ¢ È£Ãâ -> ·Î±×ÀÎ -> Çªµå¸¶ÄÏ
-			system("cls");
-			join();
-			if (join_key == 'j') {
-				system("cls");
-				login();  break;
-			}
-
-		}
-		else if (key == '2') {				// ·Î±×ÀÎ -> Çªµå¸¶ÄÏ
-			system("cls");
-			login();
-			if (join_key == 'l') {
-				system("cls");
-				break;
-			}
-		}
-		else if (key == '3') {
-			system("cls");
-			basket(); break;
-		}
-		else if (key == '4') {				/// ÇÁ·Î±×·¥ Á¾·á
-			exit(0);
-		}
-
-	}
-
-	// À½½Ä ¸Þ´º ¸ñ·Ï È­¸é Ãâ·Â
-	// foodMarket();
-
-
-
+	mamilogo();
 
 	// ¸ðµç ÇÁ·Î±×·¥ÀÌ Á¾·á Á¦ÀÏ ³¡
 	system("pause");
