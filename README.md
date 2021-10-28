@@ -1,6 +1,6 @@
 # marketmirim
 
-* database : study_db
+* database : marketmirim
 * id : localhost
 * user : root
 * port : 3308
