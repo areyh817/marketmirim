@@ -26,6 +26,7 @@ int admincount;
 char* name = (char*)malloc(sizeof(char) * 50);
 char* pw = (char*)malloc(sizeof(char) * 50);
 char* foodname = (char*)malloc(sizeof(char) * 50);
+char* foodnum = (char*)malloc(sizeof(char) * 50);
 
 
 void login();
@@ -35,6 +36,7 @@ void buy();
 void product();
 void adminlogin();
 void adminadd();
+void payment();
 
 
 void gotoxy(int x, int y) {
@@ -243,20 +245,23 @@ void adminadd() {
 	gotoxy(69, 9);
 	cout << "♥ 상품추가 ♥" << endl;
 	gotoxy(65, 18);
+	cout << "▶   품   번  \t";
+	cin >> foodnum;
+	gotoxy(65, 19);
 	cout << "▶   상   품  \t";
 	cin >> foodname;
-	gotoxy(65, 19);
+	gotoxy(65, 20);
 	cout << "▶   가   격 \t";
 	cin >> adminmoney;
-	gotoxy(65, 20);
+	gotoxy(65, 21);
 	cout << "▶   수   량 \t";
 	cin >> admincount;
 
-	gotoxy(63, 23);
+	gotoxy(63, 25);
 	cout << "♥ SPACE를 눌러 상품추가를 해주세요 ♥" << endl;
 
 	char query[255];
-	sprintf(query, "INSERT INTO market VALUES('%s', %d, %d)", foodname, adminmoney, admincount);
+	sprintf(query, "INSERT INTO market VALUES('%s', '%s', %d, %d)", foodnum, foodname, adminmoney, admincount);
 	int stat = mysql_query(mysql, query);
 
 	key = _getch();
@@ -271,6 +276,41 @@ void basket() {
 }
 
 void product() {
+	char query[255];
+	char* foodkey;
+
+	sprintf(query, "select * from market");
+	int state = mysql_query(mysql, query);
+
+	if (state == 0) {
+
+		res = mysql_store_result(mysql);		// Result set에 저장
+
+		gotoxy(55, 8);
+		cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+		gotoxy(58, 9);
+		cout << "품번\t\t상품명\t      금액      수량\n";
+		gotoxy(55, 10);
+		cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+
+
+		cout << "\n\n\n";
+		while ((row = mysql_fetch_row(res)) != NULL) {		// Result set에서 1개씩 배열을 가져옴
+
+
+			cout << "                                                         " << row[0] << "\t\t" << row[1] << "\t" << row[2] << "\t" << row[3] << endl;	
+
+		}
+	}
+
+	key = _getch();
+	if (key == (int)row[0]) {
+		system("cls");
+		payment();
+	}
+}
+
+void payment() {
 
 }
 
