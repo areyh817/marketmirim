@@ -21,16 +21,20 @@ MYSQL_ROW row;
 int id;
 int fields;
 int key;
+int adminmoney;
+int admincount;
 char* name = (char*)malloc(sizeof(char) * 50);
 char* pw = (char*)malloc(sizeof(char) * 50);
+char* foodname = (char*)malloc(sizeof(char) * 50);
 
 
 void login();
 void join();
 void basket();
 void buy();
-void list();
+void product();
 void adminlogin();
+void adminadd();
 
 
 void gotoxy(int x, int y) {
@@ -105,6 +109,7 @@ void mamilogo() {
 		login();
 	} else if (key == '3') {
 		system("cls"); 
+		basket();
 	} else if (key == '4') {
 		exit(0);
 	} else if (key == '5') {
@@ -156,6 +161,7 @@ void login() {
 
 		Sleep(1000);
 		system("cls");
+		product();
 	}
 }
 
@@ -215,26 +221,58 @@ void adminlogin() {
 			if (!strcmp(row[1], pw)) {
 				cout << "로그인 되었습니다.";
 
-			}
-			else {
+			} else {
 				cout << "아이디 또는 비밀번호가 일치하지 않습니다.";
 				Sleep(1000);
 				system("cls");
-				login();
+				adminlogin();
 			}
-		}
-		else {
+		} else {
 			cout << "아이디 또는 비밀번호가 일치하지 않습니다";
 
 		}
 
 		Sleep(1000);
 		system("cls");
+		adminadd();
 	}
 	
 }
 
+void adminadd() {
+	gotoxy(69, 9);
+	cout << "♥ 상품추가 ♥" << endl;
+	gotoxy(65, 18);
+	cout << "▶   상   품  \t";
+	cin >> foodname;
+	gotoxy(65, 19);
+	cout << "▶   가   격 \t";
+	cin >> adminmoney;
+	gotoxy(65, 20);
+	cout << "▶   수   량 \t";
+	cin >> admincount;
 
+	gotoxy(63, 23);
+	cout << "♥ SPACE를 눌러 상품추가를 해주세요 ♥" << endl;
+
+	char query[255];
+	sprintf(query, "INSERT INTO market VALUES('%s', %d, %d)", foodname, adminmoney, admincount);
+	int stat = mysql_query(mysql, query);
+
+	key = _getch();
+	if (key == 32) {
+		system("cls");
+		product();
+	}
+}
+
+void basket() {
+
+}
+
+void product() {
+
+}
 
 
 int main() {
