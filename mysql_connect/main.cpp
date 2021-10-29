@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include <string>
 #include <mysql.h>
+#include <mmsystem.h>
+#pragma comment(lib,"winmm.lib")
 #pragma comment(lib, "libmysql.lib")
 using namespace std;
 
@@ -1020,6 +1022,8 @@ int main() {
 		cout << "success" << endl;
 		mysql_set_character_set(mysql, "euckr");
 	}
+
+	PlaySound(TEXT("emart.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP); //루프 재생
 
 	// 한글로 입력받기 위함
 	mysql_query(mysql, "set session character_set_connection=euckr;");
