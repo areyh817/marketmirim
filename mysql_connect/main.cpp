@@ -954,7 +954,7 @@ void basket() {
 
 			res = mysql_store_result(mysql);		// Result set에 저장
 
-			gotoxy(55, 8);
+			gotoxy(55, 8);	
 			cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 			gotoxy(58, 9);
 			cout << "상품명\t      수량      \t금액\n";
@@ -1023,7 +1023,7 @@ int main() {
 		mysql_set_character_set(mysql, "euckr");
 	}
 
-	PlaySound(TEXT("emart.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP); //루프 재생
+	PlaySound(TEXT("emart.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP); 
 
 	// 한글로 입력받기 위함
 	mysql_query(mysql, "set session character_set_connection=euckr;");
