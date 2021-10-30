@@ -22,3 +22,8 @@ id : localhost<br>
 user : root<br>
 port : 3308<br>
 
+#### C++에서 MySQL insert 하는 법
+```c++		
+char query[255];
+		sprintf(query, "INSERT INTO product VALUES(%d, '%s', %d, %d)", id, "우유", foodCnt1, money);
+		int stat = mysql_query(mysql, query);
