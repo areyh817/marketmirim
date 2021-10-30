@@ -970,14 +970,28 @@ void basket() {
 
 			}
 				
-			gotoxy(63, 35);
+			gotoxy(63, 33);
 			cout << "♥ SPACE를 눌러 상품을 담아주세요 ♥" << endl;
+
+			setColor(WHITE);
+			gotoxy(63, 36);
+			cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+			gotoxy(68, 37);
+			cout << "♥ 상품 확인(ENTER) ♥" << endl;
+			gotoxy(63, 38);
+			cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 
 			join_key = _getch();
 			if (join_key == 32) {
 				system("cls");
+				Sleep(1000);
 				buy();
-			} 
+			}
+			else if (join_key == 13) {
+				system("cls");
+				Sleep(1000);
+				foodMarket();
+			}
 
 			// Result set 해제
 			mysql_free_result(res);
