@@ -23,5 +23,11 @@
     <None Include="mysql.sql">
       <Filter>소스 파일</Filter>
     </None>
+    <None Include="user.sql">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="product.sql">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
 </Project>

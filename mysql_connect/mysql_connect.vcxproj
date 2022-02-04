@@ -151,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mysql.sql" />
+    <None Include="product.sql" />
+    <None Include="user.sql" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
